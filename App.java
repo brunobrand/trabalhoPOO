@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class App {
    public static void main(String args[]){
       
-      ArrayList clientes = new ArrayList<Cliente>(100);
+      ArrayList<Cliente> clientes = new ArrayList<Cliente>(100);
 
       Scanner in = new Scanner(System.in);
       
