@@ -1,11 +1,13 @@
 public abstract class Cliente {
-    protected String nome;
-    protected String telefone;
-
+    protected String nome = "";
+    protected String telefone = "";
+    
     public Cliente(String nome, String telefone){
         this.nome = nome;
         this.telefone = telefone;
     }
+
+    public Cliente(){}
 
     public String getNome(){
         return nome;

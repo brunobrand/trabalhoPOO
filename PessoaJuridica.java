@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 public class PessoaJuridica extends Cliente {
     private String cnpj;
 
@@ -17,3 +18,16 @@ public class PessoaJuridica extends Cliente {
         return str;
     }
 }
+=======
+
+public class PessoaJuridica extends Cliente {
+   
+    private String cnpj = "";
+    
+    public PessoaJuridica(String nome, String telefone, String cnpj){
+        this.nome = nome;
+        this.telefone = telefone;
+        this.cnpj = cnpj;
+     }
+}
+>>>>>>> 20a6a6114d518f0e7bca0dd96ebd31dea0785862
