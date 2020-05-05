@@ -1,7 +1,7 @@
-public class CategoriaAutomovel{
+public class MarcaAutomovel {
     private String nome;
 
-    public CategoriaAutomovel(String nome){
+    public MarcaAutomovel(String nome){
         this.nome = nome;
     }
 
@@ -10,7 +10,8 @@ public class CategoriaAutomovel{
     }
 
     public String toString(){
-        return "Categoria: " + nome + " - ";
+        return "Marca: " + nome + " - ";
     }
+
 
 }

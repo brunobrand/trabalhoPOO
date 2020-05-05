@@ -3,11 +3,13 @@ public class Automovel {
     private int ano;
     private double valorDiaria;
     private boolean disponivel = true;
+    private ModeloAutomovel modelo;
 
-    public Automovel(String placa, int ano, double valorDiaria){
+    public Automovel(String placa, int ano, double valorDiaria, ModeloAutomovel modelo){
         this.placa = placa;
         this.ano = ano;
         this.valorDiaria = valorDiaria;
+        this.modelo = modelo;
     }
 
     public void setDisponivel(int d){
@@ -15,13 +17,34 @@ public class Automovel {
         else disponivel = false;
     }
 
+    public String mostraDisponibilidade(){
+        if(disponivel == true) return "Está disponível";
+        else return "Já está locado.";
+    }
+
     public double getValorDiaria(){
         return valorDiaria;
     }
 
+    public String getNomeModelo(){
+        return modelo.getNome();
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public ModeloAutomovel getModelo(){
+        return modelo;
+    }
+
     public String toString(){
-        return "Placa: " + placa + "\n" + "Ano: " + ano + "\n" + "Valor Diária: " + valorDiaria
-                + "\n" + "Disponibilidade: " + disponivel;
+        return "Modelo: " + getNomeModelo() + "\n" + "Placa: " + placa + "\n" + "Ano: " + ano + "\n" + "Valor Diária: " + valorDiaria
+                + "\n" + "Disponibilidade: " + mostraDisponibilidade();
     }
 
 }
