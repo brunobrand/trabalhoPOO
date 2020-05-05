@@ -5,7 +5,6 @@ public class App {
    public static void main(String args[]){
       
       ListaClientes lista = new ListaClientes(100);
-
       Scanner in = new Scanner(System.in);
       
       System.out.println("Digite 1 para o menu de funcionarios: ");
