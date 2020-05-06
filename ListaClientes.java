@@ -10,9 +10,10 @@ public class ListaClientes {
         clientes = new ArrayList<Cliente>(qtdMax);
     }
 
-    public void insere(Cliente novoCliente) {
+    public boolean insere(Cliente novoCliente) {
         clientes.add(novoCliente);
         total = total + 1;
+        return true;
     }
 
     public boolean remove(String nome) {
