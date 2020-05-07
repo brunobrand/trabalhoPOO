@@ -4,61 +4,21 @@ import java.util.Scanner;
 public class App {
    public static void main(String args[]){
       
-      ListaClientes lista = new ListaClientes(100); 
-      
-       
       Scanner in = new Scanner(System.in);
-      
+      int numero;
+      do{
+      System.out.println("Digite 0 para sair do programa: ");
       System.out.println("Digite 1 para o menu de funcionarios: ");
       System.out.println("Digite 2 para o menu do gerente: ");
       
-      int numero = in.nextInt();
+      numero = in.nextInt();
 
       switch(numero){
-         case 1:
-           
-            System.out.println("Bem vindo ao menu de funcionários; ");
-            System.out.println("Digite 0 para voltar ao menu principal. ");
-            System.out.println("Digite 1 para cadastrar novo cliente; ");
-            System.out.println("Digite 2 para consultar a disponibilidade de automóvel por categoria; ");
-            System.out.println("Digite 3 para consultar o valor de uma locação; ");
-            System.out.println("Digite 4 para realizar uma locação; ");
-            System.out.println("Digite 5 para finalizar uma locação; ");
-            
-            int a = in.nextInt();
-
-            switch(a){
-
-               case 1: 
-
-               System.out.println("Digite 1 para cliente pessoa-física; "); 
-               System.out.println("Digite 2 para cliente pessoa-júridica; ");
-               int pessoa = in.nextInt();
-               
-               switch(pessoa){
-                  
-                  case 1: adicionaClientePessoaFisica(lista); break;
-         
-                  case 2: adicionaClientePessoaJuridica(lista); break;
-                  
-               }
-               break;            
-
-               case 2: consultaPorCategoria(); break; 
-
-               case 3: consultaValorLocacao(); break;
-                 
-               case 4: realizaLocacao(); break;
-
-               case 5: finalizaLocacao(); break;
-
-               default: System.out.println("Opção inválida. "); break;
-            }
-            break;
-            
-         case 2: System.out.println("Bem vindo ao menu do gerente; "); break;          
+         case 1: selecionaFuncoesFuncionarios();
       }
+      }while(numero!=0);
    }
+   
 
    private static void adicionaClientePessoaFisica(ListaClientes lista){
       
@@ -77,6 +37,8 @@ public class App {
       boolean result = lista.insere(umaPessoa);
       if(result){System.out.println("Cliente cadastrado com sucesso ");}
       else System.out.println("Erro ao cadastrar o cliente ");
+
+
       
    }
 
@@ -118,4 +80,61 @@ public class App {
       System.out.println("b");
 
    }
+
+   public static void selecionaFuncoesFuncionarios(){
+      
+      ListaClientes lista = new ListaClientes(100); 
+
+      Scanner in = new Scanner(System.in);
+      
+      int opcao;
+            do{ 
+            System.out.println("Bem vindo ao menu de funcionários; ");
+            System.out.println("Digite 0 para voltar ao menu principal. ");
+            System.out.println("Digite 1 para cadastrar novo cliente; ");
+            System.out.println("Digite 2 para consultar a disponibilidade de automóvel por categoria; ");
+            System.out.println("Digite 3 para consultar o valor de uma locação; ");
+            System.out.println("Digite 4 para realizar uma locação; ");
+            System.out.println("Digite 5 para finalizar uma locação; ");
+            
+            opcao = in.nextInt();
+
+            switch(opcao){
+
+               case 1: 
+
+               System.out.println("Digite 1 para cliente pessoa-física; "); 
+               System.out.println("Digite 2 para cliente pessoa-júridica; ");
+               int pessoa = in.nextInt();
+               
+               switch(pessoa){
+                  
+                  case 1: adicionaClientePessoaFisica(lista); break;
+         
+                  case 2: adicionaClientePessoaJuridica(lista); break;
+                  
+               }
+               break;            
+
+               case 2: consultaPorCategoria(); break; 
+
+               case 3: consultaValorLocacao(); break;
+                 
+               case 4: realizaLocacao(); break;
+
+               case 5: finalizaLocacao(); break;
+
+               default: System.out.println("Opção inválida. "); break;
+            }
+            break;
+
+            }while(opcao != 0);        
+   }
 }
+   
+
+ 
+
+   
+   
+
