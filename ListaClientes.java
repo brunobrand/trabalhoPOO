@@ -34,10 +34,10 @@ public class ListaClientes {
     }
 
     public void mostra() {
-        if (total < 1) System.out.print("Não há automóveis cadastrados");
+        if (total < 1) System.out.println("Não há clientes cadastrados");
         if (total > 0) {
             String str = " ";
-            str = "Lista de Automóveis:" + "\n";
+            str = "Lista de clientes:" + "\n";
             for (int i = 0; i < clientes.size(); i++) {
                 str = str + clientes.get(i).toString() + "\n" + "//////////////////////";
             }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class ListaAutomoveis {
-    private ArrayList<Automovel> automoveis;
+    public ArrayList<Automovel> automoveis;
     private int total = 0;
     private int qtdMax;
 
@@ -32,7 +32,7 @@ public class ListaAutomoveis {
     }
 
     public void mostra() {
-        if (total < 1) System.out.print("Não há automóveis cadastrados");
+        if (total < 1) System.out.println("Não há automóveis cadastrados");
         if (total > 0) {
             String str = " ";
             str = "Lista de Automóveis:" + "\n";

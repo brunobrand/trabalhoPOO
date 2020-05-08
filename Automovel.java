@@ -4,6 +4,7 @@ public class Automovel {
     private double valorDiaria;
     private boolean disponivel = true;
     private ModeloAutomovel modelo;
+    
 
     public Automovel(String placa, int ano, double valorDiaria, ModeloAutomovel modelo){
         this.placa = placa;
