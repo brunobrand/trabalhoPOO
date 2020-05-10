@@ -3,7 +3,7 @@ public class Automovel {
     private int ano;
     private double valorDiaria;
     private boolean disponivel = true;
-    private ModeloAutomovel modelo;
+    public ModeloAutomovel modelo;
     
 
     public Automovel(String placa, int ano, double valorDiaria, ModeloAutomovel modelo){
@@ -29,6 +29,10 @@ public class Automovel {
 
     public String getNomeModelo(){
         return modelo.getNome();
+    }
+
+    public CategoriaAutomovel getCategoria(){
+        return modelo.getCategoria();
     }
 
     public String getPlaca() {
