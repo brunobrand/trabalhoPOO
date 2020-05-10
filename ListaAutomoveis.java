@@ -11,7 +11,7 @@ public class ListaAutomoveis {
     
     public void pesquisaPorCategoria(CategoriaAutomovel categoria){
        for(int i = 0; i<automoveis.size(); i++){
-          if(automoveis.get(i).getModelo.getCategoria == categoria){
+          if(automoveis.get(i).getModelo().getCategoria() == categoria){
              System.out.println(automoveis.get(i).toString());
               }
            }

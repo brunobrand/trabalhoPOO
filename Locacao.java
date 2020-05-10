@@ -26,4 +26,10 @@ public class Locacao {
         return periodo;
     }
 
+    public String toString(){
+        return "Cliente: " + cliente.getNome() + "\n" +
+                "Automóvel: " + automovel.toString() + "\n" +
+                "Valor: " + valor;
+    }
+
 }
