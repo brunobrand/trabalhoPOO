@@ -19,6 +19,16 @@ public class ListaCategoria {
         return null;
     }
 
+    public boolean pesquisaCategoriaBoolean(String nome){
+        for(int i = 0; i<categorias.size(); i++){
+            String umNome = categorias.get(i).getNome();
+            if(umNome==nome){
+               return true;
+            }
+        }
+        return false;
+    }
+
     public void insere(CategoriaAutomovel novaCategoria) {
         categorias.add(novaCategoria);
         total = total + 1;

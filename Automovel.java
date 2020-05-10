@@ -48,8 +48,8 @@ public class Automovel {
     }
 
     public String toString(){
-        return "Modelo: " + getNomeModelo() + "\n" + "Placa: " + placa + "\n" + "Ano: " + ano + "\n" + "Valor Diária: " + valorDiaria
-                + "\n" + "Disponibilidade: " + mostraDisponibilidade();
+        return "Modelo: " + modelo.getNome() + "\n" + "Placa: " + placa + "\n" + "Ano: " + ano + "\n" + "Valor Diária: " + valorDiaria
+                + "\n" ;
     }
 
 }

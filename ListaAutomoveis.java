@@ -8,10 +8,21 @@ public class ListaAutomoveis {
         this.qtdMax = max;
         automoveis = new ArrayList<Automovel>(qtdMax);
     }
+    
+    public void pesquisaPorCategoria(CategoriaAutomovel categoria){
+       for(int i = 0; i<automoveis.size(); i++){
+          if(automoveis.get(i).getModelo().getCategoria() == categoria){
+             System.out.println(automoveis.get(i).toString());
+              }
+           }
+    }
 
-    public void insere(Automovel novoAutomovel) {
-        automoveis.add(novoAutomovel);
-        total = total + 1;
+    public boolean insere(Automovel novoAutomovel) {
+        if(automoveis.add(novoAutomovel)){
+        total++;
+        return true;
+        }
+        else return false;
     }
 
     public boolean remove(String placa) {
@@ -20,7 +31,7 @@ public class ListaAutomoveis {
             String umaPlaca = automoveis.get(i).getPlaca();
             if (placa.equals(umaPlaca)){
                 automoveis.remove(umAutomovel);
-                total = total - 1;
+                total--;
                 return true;
             }
         }

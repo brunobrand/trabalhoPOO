@@ -21,6 +21,16 @@ public class ListaModelo{
         return null;
     }
 
+    public boolean pesquisaModeloBoolean(String nome){
+        for(int i = 0; i<modelos.size(); i++){
+            String umNome = modelos.get(i).getNome();
+            if(umNome==nome){
+               return true;
+            }
+        }
+        return false;
+    }
+
     public boolean insere(ModeloAutomovel umModelo) {
         modelos.add(umModelo);
         total = total + 1;

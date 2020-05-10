@@ -10,7 +10,7 @@ public class App {
       ListaCategoria listaCategoria = new ListaCategoria(100);
       ListaMarca listaMarca = new ListaMarca(100);
       ListaModelo listaModelo = new ListaModelo(100);
-
+      
       Scanner in = new Scanner(System.in);
       int numero;
       do{
@@ -182,6 +182,10 @@ public class App {
       System.out.println("Digite o nome da categoria: ");
       String nomeC = in.nextLine();
       CategoriaAutomovel umaCategoria = new CategoriaAutomovel(nomeC);
+      if(listaCategoria.pesquisaCategoriaBoolean(nomeC)){
+         System.out.println("Categoria já existente. ");
+      }
+      else
       listaCategoria.insere(umaCategoria);
       System.out.println("Categoria cadastrada com sucesso. ");
       System.out.println("//////////////////////////////////////");
@@ -248,9 +252,10 @@ public class App {
       System.out.println("Digite o valor da diária do automóvel: ");
       double valorDiaria = in.nextDouble();
       Automovel umAutomovel = new Automovel(placa, ano, valorDiaria, umModelo);
-      listaAutomoveis.insere(umAutomovel);
+      if(listaAutomoveis.insere(umAutomovel)){
       System.out.println("Automóvel cadastrado com sucesso! ");
-
+      }
+      else System.out.println("Erro ao cadastrar o automóvel, favor tentar novamente. ");
       System.out.println("//////////////////////////////////////");
    }
 
