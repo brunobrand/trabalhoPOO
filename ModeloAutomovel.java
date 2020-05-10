@@ -1,6 +1,6 @@
 public abstract class ModeloAutomovel {
     private String nome;
-    private CategoriaAutomovel categoria;
+    public CategoriaAutomovel categoria;
     private MarcaAutomovel marca;
 
     public ModeloAutomovel(String nome, MarcaAutomovel marca, CategoriaAutomovel categoria){

@@ -2,13 +2,23 @@
 import java.util.ArrayList;
 
 public class ListaModelo{
-    private ArrayList<ModeloAutomovel> modelos;
+    public ArrayList<ModeloAutomovel> modelos;
     private int total = 0;
     private int qtdMax;
 
     public ListaModelo(int max) {
         this.qtdMax = max;
         modelos = new ArrayList<ModeloAutomovel>(qtdMax);
+    }
+
+    public ModeloAutomovel pesquisaModelo(String nome){
+        for(int i = 0; i<modelos.size(); i++){
+            String umNome = modelos.get(i).getNome();
+            if(umNome==nome){
+               return modelos.get(i);
+            }
+        }
+        return null;
     }
 
     public boolean insere(ModeloAutomovel umModelo) {

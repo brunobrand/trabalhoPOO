@@ -8,6 +8,14 @@ public class ListaAutomoveis {
         this.qtdMax = max;
         automoveis = new ArrayList<Automovel>(qtdMax);
     }
+    
+    public void pesquisaPorCategoria(CategoriaAutomovel categoria){
+       for(int i = 0; i<automoveis.size(); i++){
+          if(automoveis.get(i).getModelo.getCategoria == categoria){
+             System.out.println(automoveis.get(i).toString());
+              }
+           }
+    }
 
     public void insere(Automovel novoAutomovel) {
         automoveis.add(novoAutomovel);

@@ -5,7 +5,7 @@ public class App {
    public static void main(String args[]){
 
       ListaClientes listaClientes = new ListaClientes(100); 
-      ListaLocacoes listaLocacoes = new ListaLocacoes(100); 
+      ListaLocacoes listaLocacao = new ListaLocacoes(100); 
       ListaAutomoveis listaAutomoveis = new ListaAutomoveis(100);
       ListaCategoria listaCategoria = new ListaCategoria(100);
       ListaMarca listaMarca = new ListaMarca(100);
@@ -22,14 +22,14 @@ public class App {
 
       switch(numero){
          
-         case 1: selecionaFuncionarios(listaAutomoveis, listaClientes); break;
+         case 1: selecionaFuncionarios(listaAutomoveis, listaClientes, listaLocacao, listaCategoria); break;
 
-         case 2: selecionaGerente(listaAutomoveis, listaClientes, listaCategoria, listaMarca, listaModelo); break;
+         case 2: selecionaGerente(listaAutomoveis, listaClientes, listaCategoria, listaMarca, listaModelo, listaLocacao); break;
       }
       }while(numero!=0);
    }
 
-   public static void selecionaFuncionarios(ListaAutomoveis listaAuto, ListaClientes listaClientes){
+   public static void selecionaFuncionarios(ListaAutomoveis listaAutomoveis, ListaClientes listaClientes, ListaLocacoes listaLocacao, ListaCategoria listaCategoria){
       
       
       
@@ -66,16 +66,10 @@ public class App {
                }
                break;            
 
-               case 2: consultaPorCategoria(); break; 
-
-               case 3: 
-               System.out.println("Digite a placa do automovel sem o traço: ");
-               String placa = in.nextLine();
-               break;
-                 
-               case 4: realizaLocacao(); break;
-
-               case 5: finalizaLocacao(); break;
+               case 2: consultaPorCategoria(listaCategoria, listaAutomoveis); break;
+               case 3: consultaValorLocacao(listaLocacao); break; 
+               case 4: realizaLocacao(listaLocacao); break;
+               case 5: finalizaLocacao(listaLocacao); break;
 
             }
             break;
@@ -101,6 +95,7 @@ public class App {
       boolean result = lista.insere(umaPessoa);
       if(result){System.out.println("Cliente cadastrado com sucesso ");}
       else System.out.println("Erro ao cadastrar o cliente ");
+      System.out.println("//////////////////////////////////////");
 
 
       
@@ -123,26 +118,38 @@ public class App {
       boolean result = lista.insere(umaPessoa);
       if(result){System.out.println("Cliente cadastrado com sucesso ");}
       else System.out.println("Erro ao cadastrar o cliente ");
-   }
-
-   private static void consultaPorCategoria(){
-      System.out.println("Escolha uma categoria: ");
+      System.out.println("//////////////////////////////////////");
       
    }
 
-   private static void realizaLocacao(){
+   private static void consultaPorCategoria(ListaCategoria listaCategoria, ListaAutomoveis listaAutomoveis){
+      Scanner in = new Scanner(System.in);
+      System.out.println("Digite o nome da categoria: ");
+      String categoria = in.nextLine();
+      CategoriaAutomovel umaCategoria = listaCategoria.pesquisaCategoria(categoria);
+      
+      
+   }
+   
+   private static void consultaValorLocacao(ListaLocacoes listaLocacao){
+      Scanner in = new Scanner(System.in);
+      System.out.println("A");
+   }
+
+   private static void realizaLocacao(ListaLocacoes listaLocacao){
+      Scanner in = new Scanner(System.in);
       System.out.println("a");
    
    }
 
-   private static void finalizaLocacao(){
+   private static void finalizaLocacao(ListaLocacoes listaLocacoes){
       System.out.println("b");
 
    }
 
    
 
-   private static void selecionaGerente(ListaAutomoveis listaAutomoveis, ListaClientes listaClientes, ListaCategoria listaCategoria, ListaMarca listaMarca, ListaModelo listaModelo){
+   private static void selecionaGerente(ListaAutomoveis listaAutomoveis, ListaClientes listaClientes, ListaCategoria listaCategoria, ListaMarca listaMarca, ListaModelo listaModelo, ListaLocacoes listaLocacao){
       Scanner in = new Scanner(System.in);
       int numero;
       do{
@@ -155,14 +162,15 @@ public class App {
       System.out.println("Digite 6 para consultar todas as locações cadastradas: ");
       System.out.println("Digite 7 para consultar todos os clientes cadastrados: ");
       System.out.println("Digite 8 para consultar todos os automóveis cadastrados: ");
+      System.out.println("//////////////////////////////////////");
       numero = in.nextInt();
       switch(numero){
          case 1: cadastraCategoria(listaCategoria); break;
          case 2: cadastraMarca(listaMarca); break;
          case 3: cadastraModelo(listaModelo, listaCategoria, listaMarca); break;
-         case 4: cadastraAutomovel(listaAutomoveis); break;
-         case 5:  break;
-         case 6:  break;
+         case 4: cadastraAutomovel(listaModelo, listaAutomoveis); break;
+         case 5: removeAutomovel(listaAutomoveis) ;break;
+         case 6: consultaLocacoes(listaLocacao); break;
          case 7: consultaClientes(listaClientes); break;
          case 8: consultaAutomoveis(listaAutomoveis); break;
       }
@@ -176,6 +184,7 @@ public class App {
       CategoriaAutomovel umaCategoria = new CategoriaAutomovel(nomeC);
       listaCategoria.insere(umaCategoria);
       System.out.println("Categoria cadastrada com sucesso. ");
+      System.out.println("//////////////////////////////////////");
    }
 
    private static void cadastraMarca(ListaMarca listaMarca){
@@ -185,11 +194,13 @@ public class App {
       MarcaAutomovel umaMarca = new MarcaAutomovel(nomeM);
       listaMarca.insere(umaMarca);
       System.out.println("Marca cadastrada com sucesso. ");
+      System.out.println("//////////////////////////////////////");
+
    }
 
    private static void cadastraModelo(ListaModelo listaModelo, ListaCategoria listaCategoria, ListaMarca listaMarca){
       Scanner in = new Scanner(System.in);
-      System.out.println("Digite o nome da modelo: ");
+      System.out.println("Digite o nome do modelo: ");
       String nomeModelo = in.nextLine();
       System.out.println("Digite a categoria do automóvel: ");
       String nomeCategoria = in.nextLine();
@@ -211,34 +222,52 @@ public class App {
             double ipi = in.nextDouble();
             ModeloNacional umModelo = new ModeloNacional(nomeModelo, umaMarca, umaCategoria, valor, ipi);
             listaModelo.insere(umModelo);
+            System.out.println("Modelo cadastrado com sucesso! ");
             break;
          case 2: 
             System.out.println("Digite a taxa do automóvel: "); 
             double taxa = in.nextDouble();
             ModeloImportado outroModelo = new ModeloImportado(nomeModelo, umaMarca, umaCategoria, valor, taxa);
             listaModelo.insere(outroModelo);
+            System.out.println("Modelo cadastrado com sucesso! ");
             break;
       }
+      System.out.println("//////////////////////////////////////");
    }
 
-   private static void cadastraAutomovel(ListaAutomoveis lista){
+   private static void cadastraAutomovel(ListaModelo listaModelo, ListaAutomoveis listaAutomoveis){
       Scanner in = new Scanner(System.in);
+      System.out.println("Digite o nome do modelo: ");
+      String nomeModelo = in.nextLine();
+      ModeloAutomovel umModelo;
+      umModelo = listaModelo.pesquisaModelo(nomeModelo);
       System.out.println("Digite a placa do automóvel: ");
-      String umaPlaca = in.nextLine();
+      String placa = in.nextLine();
       System.out.println("Digite o ano do automóvel: ");
-      int umAno = in.nextInt();
+      int ano = in.nextInt();
       System.out.println("Digite o valor da diária do automóvel: ");
-      double umaDiaria = in.nextDouble(); 
-      System.out.println("Digite 1 se o modelo do carro for nacional; ");
-      System.out.println("Digite 2 se o modelo do carro for importado; ");
-      int modelo = in.nextInt();
-      switch(modelo){
-         case 1:break;
-         case 2: 
-            System.out.println("Digite a taxa do automóvel: "); 
-            double taxa = in.nextDouble();
-            break;
+      double valorDiaria = in.nextDouble();
+      Automovel umAutomovel = new Automovel(placa, ano, valorDiaria, umModelo);
+      listaAutomoveis.insere(umAutomovel);
+      System.out.println("Automóvel cadastrado com sucesso! ");
+
+      System.out.println("//////////////////////////////////////");
+   }
+
+   private static void removeAutomovel(ListaAutomoveis listaAutomoveis){
+      Scanner in = new Scanner(System.in);
+      System.out.println("Digite a placa do automóvel que deseja remover: ");
+      String placa = in.nextLine();
+      if(listaAutomoveis.remove(placa)){
+         System.out.println("Automóvel removido com sucesso! ");
       }
+      else System.out.println("Automóvel não encontrado, verifique a placa e tente novamente. ");
+
+      System.out.println("//////////////////////////////////////");
+   }
+
+   private static void consultaLocacoes(ListaLocacoes lista){
+      lista.mostra();
    }
 
    private static void consultaClientes(ListaClientes lista){
