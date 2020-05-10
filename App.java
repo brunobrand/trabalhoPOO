@@ -185,10 +185,10 @@ public class App {
       if(listaCategoria.pesquisaCategoriaBoolean(nomeC)){
          System.out.println("Categoria já existente. ");
       }
-      else
-      listaCategoria.insere(umaCategoria);
-      System.out.println("Categoria cadastrada com sucesso. ");
-      System.out.println("//////////////////////////////////////");
+      else if(listaCategoria.insere(umaCategoria))System.out.println("Categoria cadastrada com sucesso. ");
+      
+      else System.out.println("Erro ao cadastrar categoria. ");
+      
    }
 
    private static void cadastraMarca(ListaMarca listaMarca){
@@ -235,6 +235,7 @@ public class App {
             listaModelo.insere(outroModelo);
             System.out.println("Modelo cadastrado com sucesso! ");
             break;
+         default: System.out.println("Valor inválido. "); break;
       }
       System.out.println("//////////////////////////////////////");
    }

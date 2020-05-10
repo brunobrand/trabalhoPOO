@@ -32,4 +32,5 @@ public class Locacao {
                 "Valor: " + valor;
     }
 
+
 }

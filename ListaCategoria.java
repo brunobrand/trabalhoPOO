@@ -10,28 +10,31 @@ public class ListaCategoria {
     }
 
     public CategoriaAutomovel pesquisaCategoria(String nome){
+        if(nome!=null){
         for(int i = 0; i<categorias.size(); i++){
-            String umNome = categorias.get(i).getNome();
-            if(umNome==nome){
+           if(categorias.get(i).getNome()==nome){
                return categorias.get(i);
             }
+        }
         }
         return null;
     }
 
     public boolean pesquisaCategoriaBoolean(String nome){
         for(int i = 0; i<categorias.size(); i++){
-            String umNome = categorias.get(i).getNome();
-            if(umNome==nome){
+            if(categorias.get(i).getNome()==nome){
                return true;
             }
         }
         return false;
     }
 
-    public void insere(CategoriaAutomovel novaCategoria) {
-        categorias.add(novaCategoria);
-        total = total + 1;
+    public boolean insere(CategoriaAutomovel novaCategoria) {
+      if(categorias.add(novaCategoria)){
+        total++;
+        return true;
+      }
+      return false;
     }
 
     public boolean remove(String nome) {

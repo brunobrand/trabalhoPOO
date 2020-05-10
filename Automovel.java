@@ -48,7 +48,9 @@ public class Automovel {
     }
 
     public String toString(){
-        return "Modelo: " + modelo.getNome() + "\n" + "Placa: " + placa + "\n" + "Ano: " + ano + "\n" + "Valor Diária: " + valorDiaria
+        String ifmodelo = "";
+        if(modelo!=null){ifmodelo = modelo.getNome();}
+        return "Modelo: " + ifmodelo+ "\n" + "Placa: " + placa + "\n" + "Ano: " + ano + "\n" + "Valor Diária: " + valorDiaria
                 + "\n" ;
     }
 
