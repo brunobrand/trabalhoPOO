@@ -11,13 +11,14 @@ public class ListaMarca{
     }
 
     public MarcaAutomovel pesquisaMarca(String nome){
+        MarcaAutomovel umaMarca = null;
         for(int i = 0; i<marcas.size(); i++){
             String umNome = marcas.get(i).getNome();
             if(umNome==nome){
-               return marcas.get(i);
+               umaMarca = marcas.get(i);
             }
         }
-        return null;
+        return umaMarca;
     }
 
     public boolean insere(MarcaAutomovel umaMarca) {

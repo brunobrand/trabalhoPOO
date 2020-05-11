@@ -38,6 +38,14 @@ public class ListaAutomoveis {
         return false;
     }
 
+    public int getSize(){
+        return automoveis.size(); 
+     }
+    
+    public Automovel get(int index){
+        return automoveis.get(index);
+    }
+
     public void mostraTotal(){
         System.out.print(total);
     }

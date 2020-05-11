@@ -7,7 +7,9 @@ public abstract class Cliente {
         this.telefone = telefone;
     }
 
-    public Cliente(){}
+    public Cliente(String nome){
+        this.nome = nome;
+    }
 
     public String getNome(){
         return nome;

@@ -10,14 +10,14 @@ public class ListaCategoria {
     }
 
     public CategoriaAutomovel pesquisaCategoria(String nome){
-        if(nome!=null){
+        CategoriaAutomovel umaCategoria = null;
         for(int i = 0; i<categorias.size(); i++){
-           if(categorias.get(i).getNome()==nome){
-               return categorias.get(i);
+            String umNome = categorias.get(i).getNome();
+            if(umNome==nome){
+               umaCategoria = categorias.get(i);
             }
         }
-        }
-        return null;
+        return umaCategoria;
     }
 
     public boolean pesquisaCategoriaBoolean(String nome){

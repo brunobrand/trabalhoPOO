@@ -1,7 +1,7 @@
 public class Locacao {
     private Cliente cliente;
     private Automovel automovel;
-    private double valor;
+    private double valor = 0;
     private int periodo;
 
     public Locacao(Cliente cliente, Automovel automovel, int periodo){

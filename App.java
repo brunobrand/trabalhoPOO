@@ -1,6 +1,8 @@
 
 import java.util.Scanner;
 
+import javax.print.DocFlavor.STRING;
+
 public class App {
    public static void main(String args[]){
 
@@ -22,14 +24,16 @@ public class App {
 
       switch(numero){
          
-         case 1: selecionaFuncionarios(listaAutomoveis, listaClientes, listaLocacao, listaCategoria); break;
+         case 1: selecionaFuncionarios(listaAutomoveis, listaClientes, listaLocacao, listaCategoria, listaModelo); break;
 
          case 2: selecionaGerente(listaAutomoveis, listaClientes, listaCategoria, listaMarca, listaModelo, listaLocacao); break;
+
+         default: System.out.println("Comando inválido. ");
       }
       }while(numero!=0);
    }
 
-   public static void selecionaFuncionarios(ListaAutomoveis listaAutomoveis, ListaClientes listaClientes, ListaLocacoes listaLocacao, ListaCategoria listaCategoria){
+   public static void selecionaFuncionarios(ListaAutomoveis listaAutomoveis, ListaClientes listaClientes, ListaLocacoes listaLocacao, ListaCategoria listaCategoria, ListaModelo listaModelo){
       
       
       
@@ -67,8 +71,8 @@ public class App {
                break;            
 
                case 2: consultaPorCategoria(listaCategoria, listaAutomoveis); break;
-               case 3: consultaValorLocacao(listaLocacao); break; 
-               case 4: realizaLocacao(listaLocacao); break;
+               case 3: consultaValorLocacao(listaLocacao, listaModelo); break; 
+               case 4: realizaLocacao(listaLocacao, listaModelo, listaAutomoveis, listaClientes); break;
                case 5: finalizaLocacao(listaLocacao); break;
 
             }
@@ -127,18 +131,30 @@ public class App {
       System.out.println("Digite o nome da categoria: ");
       String categoria = in.nextLine();
       CategoriaAutomovel umaCategoria = listaCategoria.pesquisaCategoria(categoria);
-      
+      for(int i = 0; i<listaAutomoveis.getSize(); i++){
+         if(listaAutomoveis.get(i).getModelo().getCategoria()==umaCategoria){
+            System.out.println(listaAutomoveis.get(i));
+         }
+      }
       
    }
    
-   private static void consultaValorLocacao(ListaLocacoes listaLocacao){
+   private static void consultaValorLocacao(ListaLocacoes listaLocacao, ListaModelo listaModelo){
       Scanner in = new Scanner(System.in);
       System.out.println("A");
    }
 
-   private static void realizaLocacao(ListaLocacoes listaLocacao){
+   private static void realizaLocacao(ListaLocacoes listaLocacao, ListaModelo listaModelo, ListaAutomoveis listaAutomoveis, ListaClientes listaClientes){
       Scanner in = new Scanner(System.in);
-      System.out.println("a");
+      System.out.println("Digite o nome do cliente: ");
+      String nomeCliente = in.nextLine();
+      System.out.println("Digite o periodo da locação: ");
+      int periodo = in.nextInt();
+      System.out.println("Digite o modelo do automovel: ");
+      String nomeModelo = in.nextLine();
+      ModeloAutomovel umModelo = listaModelo.pesquisaModelo(nomeModelo);
+
+
    
    }
 
@@ -162,6 +178,7 @@ public class App {
       System.out.println("Digite 6 para consultar todas as locações cadastradas: ");
       System.out.println("Digite 7 para consultar todos os clientes cadastrados: ");
       System.out.println("Digite 8 para consultar todos os automóveis cadastrados: ");
+      System.out.println("Digite 9 para fazer uma simulação: ");
       System.out.println("//////////////////////////////////////");
       numero = in.nextInt();
       switch(numero){
@@ -173,6 +190,8 @@ public class App {
          case 6: consultaLocacoes(listaLocacao); break;
          case 7: consultaClientes(listaClientes); break;
          case 8: consultaAutomoveis(listaAutomoveis); break;
+         case 9: simulacao(listaAutomoveis, listaClientes, listaCategoria, listaMarca, listaModelo, listaLocacao); break;
+         default: System.out.println("Comando inválido. ");
       }
       }while(numero!=0);
    }
@@ -189,6 +208,7 @@ public class App {
       
       else System.out.println("Erro ao cadastrar categoria. ");
       
+      listaCategoria.mostra();
    }
 
    private static void cadastraMarca(ListaMarca listaMarca){
@@ -198,6 +218,7 @@ public class App {
       MarcaAutomovel umaMarca = new MarcaAutomovel(nomeM);
       listaMarca.insere(umaMarca);
       System.out.println("Marca cadastrada com sucesso. ");
+      listaMarca.mostra();
       System.out.println("//////////////////////////////////////");
 
    }
@@ -227,6 +248,7 @@ public class App {
             ModeloNacional umModelo = new ModeloNacional(nomeModelo, umaMarca, umaCategoria, valor, ipi);
             listaModelo.insere(umModelo);
             System.out.println("Modelo cadastrado com sucesso! ");
+            listaModelo.mostra();
             break;
          case 2: 
             System.out.println("Digite a taxa do automóvel: "); 
@@ -234,6 +256,7 @@ public class App {
             ModeloImportado outroModelo = new ModeloImportado(nomeModelo, umaMarca, umaCategoria, valor, taxa);
             listaModelo.insere(outroModelo);
             System.out.println("Modelo cadastrado com sucesso! ");
+            listaModelo.mostra();
             break;
          default: System.out.println("Valor inválido. "); break;
       }
@@ -255,6 +278,7 @@ public class App {
       Automovel umAutomovel = new Automovel(placa, ano, valorDiaria, umModelo);
       if(listaAutomoveis.insere(umAutomovel)){
       System.out.println("Automóvel cadastrado com sucesso! ");
+      listaAutomoveis.mostra();
       }
       else System.out.println("Erro ao cadastrar o automóvel, favor tentar novamente. ");
       System.out.println("//////////////////////////////////////");
@@ -266,6 +290,7 @@ public class App {
       String placa = in.nextLine();
       if(listaAutomoveis.remove(placa)){
          System.out.println("Automóvel removido com sucesso! ");
+         listaAutomoveis.mostra();
       }
       else System.out.println("Automóvel não encontrado, verifique a placa e tente novamente. ");
 
@@ -283,6 +308,58 @@ public class App {
    private static void consultaAutomoveis(ListaAutomoveis lista){
       lista.mostra();
    }
+
+   public static void simulacao(ListaAutomoveis listaAutomoveis, ListaClientes listaClientes, ListaCategoria listaCategoria, ListaMarca listaMarca, ListaModelo listaModelo, ListaLocacoes listaLocacao){
+      CategoriaAutomovel suvmedio = new CategoriaAutomovel("SUVMédio");
+      listaCategoria.insere(suvmedio);
+      
+      MarcaAutomovel jeep = new MarcaAutomovel("Jeep");
+      listaMarca.insere(jeep);
+
+      double ipiCompass = 1/4;
+      double valorCompass = 120000;
+      ModeloAutomovel compass = new ModeloNacional("Compass", jeep, suvmedio, valorCompass, ipiCompass);
+      listaModelo.insere(compass);
+
+      double taxaCherokee = 3/4;
+      double valorCherokee = 250000;
+      ModeloAutomovel cherokee = new ModeloImportado("Cherokee", jeep, suvmedio, valorCherokee, taxaCherokee);
+      listaModelo.insere(cherokee);
+
+      String placa = "AAA-1A1";
+      Automovel carroCompass = new Automovel(placa, 2020, 100, compass);
+      listaAutomoveis.insere(carroCompass);
+
+      String placa2 = "BBB-B2BB";
+      Automovel carroCherokee = new Automovel(placa2, 2020, 200, cherokee);
+      listaAutomoveis.insere(carroCherokee);
+
+      String nomePedro = "Pedro";
+      String telefonePedro = "";
+      String cpfPedro = "";
+      Cliente pedro = new PessoaFisica(nomePedro, telefonePedro, cpfPedro); 
+      listaClientes.insere(pedro);
+
+      String nomeACME = "ACME";
+      String telefoneACME = "";
+      String cnpjACME = "";
+      Cliente acme = new PessoaJuridica(nomeACME, telefoneACME, cnpjACME);
+      listaClientes.insere(acme);
+
+      Locacao locacaoPedro = new Locacao(pedro, carroCompass, 7);
+      listaLocacao.insere(locacaoPedro);
+      Locacao locacaoACME = new Locacao(acme, carroCherokee, 7);
+      listaLocacao.insere(locacaoACME);
+
+      consultaClientes(listaClientes);
+
+      consultaLocacoes(listaLocacao);
+
+      consultaAutomoveis(listaAutomoveis);
+
+      
+
+}
 }
    
 

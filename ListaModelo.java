@@ -12,13 +12,14 @@ public class ListaModelo{
     }
 
     public ModeloAutomovel pesquisaModelo(String nome){
+        ModeloAutomovel umModelo = null;
         for(int i = 0; i<modelos.size(); i++){
             String umNome = modelos.get(i).getNome();
             if(umNome==nome){
-               return modelos.get(i);
+               umModelo = modelos.get(i);
             }
         }
-        return null;
+        return umModelo;
     }
 
     public boolean pesquisaModeloBoolean(String nome){
