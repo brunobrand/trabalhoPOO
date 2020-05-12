@@ -2,9 +2,9 @@ public class Locacao {
     private Cliente cliente;
     private Automovel automovel;
     private double valor = 0;
-    private int periodo;
+    private double periodo;
 
-    public Locacao(Cliente cliente, Automovel automovel, int periodo){
+    public Locacao(Cliente cliente, Automovel automovel, double periodo){
         this.cliente = cliente;
         this.automovel = automovel;
     }
@@ -22,7 +22,7 @@ public class Locacao {
         return automovel;
     }
 
-    public int getPeriodo() {
+    public double getPeriodo() {
         return periodo;
     }
 

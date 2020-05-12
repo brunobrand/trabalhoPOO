@@ -18,6 +18,10 @@ public class Automovel {
         else disponivel = false;
     }
 
+    public boolean getDisponivel(String placa){
+        return disponivel;
+    }
+
     public String mostraDisponibilidade(){
         if(disponivel == true) return "Está disponível";
         else return "Já está locado.";

@@ -51,7 +51,7 @@ public class ListaLocacoes {
             String str = " ";
             str = "Lista de locações: + \n";
             for (int i = 0; i < locacoes.size(); i++) {
-                str = str + locacoes.get(i).toString() + "\n" + "//////////////////////";
+                str = str + locacoes.get(i).toString() + "\n";
             }
             System.out.println(str);
         }

@@ -17,6 +17,7 @@ public class App {
       System.out.println("Digite 0 para sair do programa: ");
       System.out.println("Digite 1 para o menu de funcionarios: ");
       System.out.println("Digite 2 para o menu do gerente: ");
+      System.out.println("//////////////////////////////////////");
       
       numero = in.nextInt();
 
@@ -48,7 +49,7 @@ public class App {
             System.out.println("Digite 3 para consultar o valor de uma locação; ");
             System.out.println("Digite 4 para realizar uma locação; ");
             System.out.println("Digite 5 para finalizar uma locação; ");
-            
+            System.out.println("//////////////////////////////////////");
             opcao = in.nextInt();
             
             switch(opcao){
@@ -57,6 +58,7 @@ public class App {
 
                System.out.println("Digite 1 para cliente pessoa-física; "); 
                System.out.println("Digite 2 para cliente pessoa-júridica; ");
+               System.out.println("//////////////////////////////////////");
                int pessoa = in.nextInt();
                
                switch(pessoa){
@@ -69,8 +71,8 @@ public class App {
                break;            
 
                case 2: consultaPorCategoria(listaCategoria, listaAutomoveis); break;
-               case 3: consultaValorLocacao(listaLocacao, listaModelo); break; 
-               case 4: realizaLocacao(listaLocacao, listaModelo, listaAutomoveis, listaClientes); break;
+               case 3: consultaValorLocacao(listaLocacao, listaAutomoveis); break; 
+               case 4: realizaLocacao(listaLocacao, listaAutomoveis, listaClientes); break;
                case 5: finalizaLocacao(listaLocacao, listaAutomoveis); break;
 
             }
@@ -132,37 +134,46 @@ public class App {
       String categoria = in.nextLine();
       CategoriaAutomovel umaCategoria = listaCategoria.pesquisaCategoria(categoria);
       listaAutomoveis.pesquisaPorCategoria(umaCategoria);
-      
-
-   }
-   
-   private static void consultaValorLocacao(ListaLocacoes listaLocacao, ListaModelo listaModelo){
-      Scanner in = new Scanner(System.in);
-      System.out.println("A");
-   }
-
-   private static void realizaLocacao(ListaLocacoes listaLocacao, ListaModelo listaModelo, ListaAutomoveis listaAutomoveis, ListaClientes listaClientes){
-      Scanner in = new Scanner(System.in);
-      System.out.println("Digite o nome do cliente: ");
-      String nomeCliente = in.nextLine();
-      Cliente umCliente = listaClientes.pesquisaCliente(nomeCliente);
-      System.out.println("Digite o periodo da locação: ");
-      int periodo = in.nextInt();
-      System.out.println("Digite a placa do automóvel: ");
-      String placa = in.nextLine();
-      Automovel umAutomovel = listaAutomoveis.pesquisaAutomovel(placa);
-      Locacao umaLocacao = new Locacao(umCliente, umAutomovel, periodo);
-      if(listaLocacao.insere(umaLocacao)){
-         umAutomovel.setDisponivel(0);
-         System.out.println("Locação cadastrada com sucesso! ");
-         listaLocacao.mostra();
-      }
-      else System.out.println("Não foi possível cadastrar a locação. ");
-      
       System.out.println("//////////////////////////////////////");
 
    }
+   
+   private static void consultaValorLocacao(ListaLocacoes listaLocacoes, ListaAutomoveis listaAutomoveis){
+      Scanner in = new Scanner(System.in);
+      System.out.println("Digite a placa do automóvel: ");
+      String placa = in.nextLine();
+      Locacao umaLocacao;
+      umaLocacao = listaLocacoes.pesquisaLocacoes(placa);
+      if(umaLocacao!=null){
+      double valor = umaLocacao.getValorLocacao();
+      System.out.println("O valor da locação é: "+ valor);
+      }
+      else System.out.println("Locação não encontrada. ");
 
+      System.out.println("//////////////////////////////////////");
+   }
+
+   private static void realizaLocacao(ListaLocacoes listaLocacao, ListaAutomoveis listaAutomoveis, ListaClientes listaClientes){
+      Scanner in = new Scanner(System.in);
+      System.out.println("Digite o nome do cliente: ");
+      String nomeCliente = in.nextLine();
+      System.out.println("Digite a placa do automóvel: ");
+      String placa = in.nextLine();
+      System.out.println("Digite o periodo em dias: ");
+      double periodo = in.nextDouble();
+
+      Cliente umCliente = listaClientes.pesquisaCliente(nomeCliente);
+      
+      Automovel umAutomovel = listaAutomoveis.pesquisaAutomovel(placa);
+      
+      Locacao umaLocacao = new Locacao(umCliente, umAutomovel, periodo);
+      if(umAutomovel!=null && umCliente!=null && umaLocacao!=null){
+         if(listaLocacao.insere(umaLocacao)){
+            System.out.println("Locação bem-sucedida. ");
+         }  
+      }
+      else System.out.println("Erro ao cadastrar locação. ");
+   }
    private static void finalizaLocacao(ListaLocacoes listaLocacoes, ListaAutomoveis listaAutomoveis){
       Scanner in = new Scanner(System.in);
       System.out.println("Digite a placa do automóvel: ");
@@ -209,7 +220,6 @@ public class App {
          case 7: consultaClientes(listaClientes); break;
          case 8: consultaAutomoveis(listaAutomoveis); break;
          case 9: simulacao(listaAutomoveis, listaClientes, listaCategoria, listaMarca, listaModelo, listaLocacao); break;
-         default: System.out.println("Comando inválido. ");
       }
       }while(numero!=0);
    }
@@ -327,8 +337,6 @@ public class App {
       lista.mostra();
    }
    
-   // Embora tenhamos tido dificuldade na interação com o usuário, a demonstração encontrasse plenamente funcional.
-
    public static void simulacao(ListaAutomoveis listaAutomoveis, ListaClientes listaClientes, ListaCategoria listaCategoria, ListaMarca listaMarca, ListaModelo listaModelo, ListaLocacoes listaLocacao){
       CategoriaAutomovel suvmedio = new CategoriaAutomovel("SUVMédio");
       listaCategoria.insere(suvmedio);

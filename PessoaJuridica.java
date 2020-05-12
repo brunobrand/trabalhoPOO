@@ -7,7 +7,7 @@ public class PessoaJuridica extends Cliente {
         this.cnpj = cnpj;
     }
 
-    public String getCpf(){
+    public String getCnpj(){
         return cnpj;
     }
 
