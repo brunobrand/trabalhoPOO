@@ -9,6 +9,16 @@ public class ListaClientes {
         this.qtdMax = max;
         clientes = new ArrayList<Cliente>(qtdMax);
     }
+    
+    public Cliente pesquisaCliente(String nome){
+        Cliente retorno = null;
+        for(int i = 0; i<clientes.size(); i++){
+            if(clientes.get(i).getNome().equals(nome)){
+               retorno = clientes.get(i);
+            }
+        }
+        return retorno;
+    }
 
     public boolean insere(Cliente novoCliente) {
         clientes.add(novoCliente);

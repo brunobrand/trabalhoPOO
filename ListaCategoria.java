@@ -8,12 +8,15 @@ public class ListaCategoria {
         this.qtdMax = max;
         categorias = new ArrayList<CategoriaAutomovel>(qtdMax);
     }
+ 
+    // Método aparentemente não-funcional que dificultou nosso trabalho. 
 
     public CategoriaAutomovel pesquisaCategoria(String nome){
         CategoriaAutomovel umaCategoria = null;
+        String umNome;
         for(int i = 0; i<categorias.size(); i++){
-            String umNome = categorias.get(i).getNome();
-            if(umNome==nome){
+            umNome = categorias.get(i).getNome();
+            if(umNome.equals(nome)){
                umaCategoria = categorias.get(i);
             }
         }
@@ -22,7 +25,7 @@ public class ListaCategoria {
 
     public boolean pesquisaCategoriaBoolean(String nome){
         for(int i = 0; i<categorias.size(); i++){
-            if(categorias.get(i).getNome()==nome){
+            if(categorias.get(i).getNome().equals(nome)){
                return true;
             }
         }
@@ -60,7 +63,7 @@ public class ListaCategoria {
             String str = " ";
             str = "Lista de categorias:" + "\n";
             for (int i = 0; i < categorias.size(); i++) {
-                str = str + categorias.get(i).toString() + "\n" + "//////////////////////";
+                str = str + categorias.get(i).toString() + "\n";
             }
             System.out.println(str);
         }

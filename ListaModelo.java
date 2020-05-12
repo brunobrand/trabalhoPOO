@@ -11,11 +11,13 @@ public class ListaModelo{
         modelos = new ArrayList<ModeloAutomovel>(qtdMax);
     }
 
+    // Método aparentemente não-funcional que dificultou nosso trabalho. 
+
     public ModeloAutomovel pesquisaModelo(String nome){
         ModeloAutomovel umModelo = null;
         for(int i = 0; i<modelos.size(); i++){
             String umNome = modelos.get(i).getNome();
-            if(umNome==nome){
+            if(umNome.equals(nome)){
                umModelo = modelos.get(i);
             }
         }
@@ -61,7 +63,7 @@ public class ListaModelo{
             String str = " ";
             str = "Lista de modelos:" + "\n";
             for (int i = 0; i < modelos.size(); i++) {
-                str = str + modelos.get(i).toString() + "\n" + "//////////////////////";
+                str = str + modelos.get(i).toString() + "\n";
             }
             System.out.println(str);
         }

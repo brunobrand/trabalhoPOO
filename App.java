@@ -1,8 +1,6 @@
 
 import java.util.Scanner;
 
-import javax.print.DocFlavor.STRING;
-
 public class App {
    public static void main(String args[]){
 
@@ -97,7 +95,9 @@ public class App {
       
       PessoaFisica umaPessoa = new PessoaFisica(nome, telefone, cpf);
       boolean result = lista.insere(umaPessoa);
-      if(result){System.out.println("Cliente cadastrado com sucesso ");}
+      if(result){System.out.println("Cliente cadastrado com sucesso ");
+         lista.mostra();
+      }
       else System.out.println("Erro ao cadastrar o cliente ");
       System.out.println("//////////////////////////////////////");
 
@@ -131,12 +131,9 @@ public class App {
       System.out.println("Digite o nome da categoria: ");
       String categoria = in.nextLine();
       CategoriaAutomovel umaCategoria = listaCategoria.pesquisaCategoria(categoria);
-      for(int i = 0; i<listaAutomoveis.getSize(); i++){
-         if(listaAutomoveis.get(i).getModelo().getCategoria()==umaCategoria){
-            System.out.println(listaAutomoveis.get(i));
-         }
-      }
+      listaAutomoveis.pesquisaPorCategoria(umaCategoria);
       
+
    }
    
    private static void consultaValorLocacao(ListaLocacoes listaLocacao, ListaModelo listaModelo){
@@ -148,14 +145,21 @@ public class App {
       Scanner in = new Scanner(System.in);
       System.out.println("Digite o nome do cliente: ");
       String nomeCliente = in.nextLine();
+      Cliente umCliente = listaClientes.pesquisaCliente(nomeCliente);
       System.out.println("Digite o periodo da locação: ");
       int periodo = in.nextInt();
-      System.out.println("Digite o modelo do automovel: ");
-      String nomeModelo = in.nextLine();
-      ModeloAutomovel umModelo = listaModelo.pesquisaModelo(nomeModelo);
+      System.out.println("Digite a placa do automóvel: ");
+      String placa = in.nextLine();
+      Automovel umAutomovel = listaAutomoveis.pesquisaAutomovel(placa);
+      Locacao umaLocacao = new Locacao(umCliente, umAutomovel, periodo);
+      if(listaLocacao.insere(umaLocacao)){
+         System.out.println("Locação cadastrada com sucesso! ");
+         listaLocacao.mostra();
+      }
+      else System.out.println("Não foi possível cadastrar a locação. ");
+      
+      System.out.println("//////////////////////////////////////");
 
-
-   
    }
 
    private static void finalizaLocacao(ListaLocacoes listaLocacoes){
@@ -300,7 +304,7 @@ public class App {
    private static void consultaLocacoes(ListaLocacoes lista){
       lista.mostra();
    }
-
+   
    private static void consultaClientes(ListaClientes lista){
       lista.mostra();
    }
@@ -308,6 +312,8 @@ public class App {
    private static void consultaAutomoveis(ListaAutomoveis lista){
       lista.mostra();
    }
+   
+   // Embora tenhamos tido dificuldade na interação com o usuário, a demonstração encontrasse plenamente funcional.
 
    public static void simulacao(ListaAutomoveis listaAutomoveis, ListaClientes listaClientes, ListaCategoria listaCategoria, ListaMarca listaMarca, ListaModelo listaModelo, ListaLocacoes listaLocacao){
       CategoriaAutomovel suvmedio = new CategoriaAutomovel("SUVMédio");

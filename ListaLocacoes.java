@@ -9,9 +9,14 @@ public class ListaLocacoes {
         locacoes = new ArrayList<Locacao>(qtdMax);
     }
 
-    public void insere(Locacao novaLocacao) {
-        locacoes.add(novaLocacao);
+    public boolean insere(Locacao novaLocacao) {
+        boolean retorno = false;
+        if(locacoes.add(novaLocacao)){
         total = total + 1;
+        retorno = true;
+        }
+        return retorno;
+
     }
 
     public void mostraTotal(){

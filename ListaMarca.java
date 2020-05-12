@@ -10,11 +10,13 @@ public class ListaMarca{
         marcas = new ArrayList<MarcaAutomovel>(qtdMax);
     }
 
+    // Método aparentemente não-funcional que dificultou nosso trabalho. 
+
     public MarcaAutomovel pesquisaMarca(String nome){
         MarcaAutomovel umaMarca = null;
         for(int i = 0; i<marcas.size(); i++){
             String umNome = marcas.get(i).getNome();
-            if(umNome==nome){
+            if(umNome.equals(nome)){
                umaMarca = marcas.get(i);
             }
         }
@@ -50,7 +52,7 @@ public class ListaMarca{
             String str = " ";
             str = "Lista de marcas:" + "\n";
             for (int i = 0; i < marcas.size(); i++) {
-                str = str + marcas.get(i).toString() + "\n" + "//////////////////////";
+                str = str + marcas.get(i).toString() + "\n" ;
             }
             System.out.println(str);
         }

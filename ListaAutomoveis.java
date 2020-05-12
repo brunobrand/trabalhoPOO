@@ -17,6 +17,16 @@ public class ListaAutomoveis {
            }
     }
 
+    public Automovel pesquisaAutomovel(String placa){
+        Automovel retorno = null;
+        for(int i = 0; i<automoveis.size(); i++){
+            if(automoveis.get(i).getPlaca().equals(placa)){
+               retorno = automoveis.get(i);
+            }
+        }
+        return retorno;
+    }
+
     public boolean insere(Automovel novoAutomovel) {
         if(automoveis.add(novoAutomovel)){
         total++;
@@ -56,7 +66,7 @@ public class ListaAutomoveis {
             String str = " ";
             str = "Lista de Automóveis:" + "\n";
             for (int i = 0; i < automoveis.size(); i++) {
-                str = str + automoveis.get(i).toString() + "\n" + "//////////////////////";
+                str = str + automoveis.get(i).toString() + "\n";
             }
             System.out.println(str);
         }
