@@ -71,7 +71,7 @@ public class App {
                case 2: consultaPorCategoria(listaCategoria, listaAutomoveis); break;
                case 3: consultaValorLocacao(listaLocacao, listaModelo); break; 
                case 4: realizaLocacao(listaLocacao, listaModelo, listaAutomoveis, listaClientes); break;
-               case 5: finalizaLocacao(listaLocacao); break;
+               case 5: finalizaLocacao(listaLocacao, listaAutomoveis); break;
 
             }
             break;
@@ -153,6 +153,7 @@ public class App {
       Automovel umAutomovel = listaAutomoveis.pesquisaAutomovel(placa);
       Locacao umaLocacao = new Locacao(umCliente, umAutomovel, periodo);
       if(listaLocacao.insere(umaLocacao)){
+         umAutomovel.setDisponivel(0);
          System.out.println("Locação cadastrada com sucesso! ");
          listaLocacao.mostra();
       }
@@ -162,9 +163,22 @@ public class App {
 
    }
 
-   private static void finalizaLocacao(ListaLocacoes listaLocacoes){
-      System.out.println("b");
-
+   private static void finalizaLocacao(ListaLocacoes listaLocacoes, ListaAutomoveis listaAutomoveis){
+      Scanner in = new Scanner(System.in);
+      System.out.println("Digite a placa do automóvel: ");
+      String placa = in.nextLine();
+      Automovel umAutomovel;
+      umAutomovel = listaAutomoveis.pesquisaAutomovel(placa);
+      Locacao umaLocacao;
+      umaLocacao = listaLocacoes.pesquisaLocacoes(placa);
+      if(listaLocacoes.remove(umaLocacao)){
+         umAutomovel.setDisponivel(1);
+         System.out.println("Locação finalizada com sucesso. ");
+         listaLocacoes.mostra();
+      }
+      else System.out.println("Não foi possível finalizar sua locação. ");
+      
+      System.out.println("//////////////////////////////////////");
    }
 
    

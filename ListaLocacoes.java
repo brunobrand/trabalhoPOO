@@ -8,6 +8,16 @@ public class ListaLocacoes {
         this.qtdMax = max;
         locacoes = new ArrayList<Locacao>(qtdMax);
     }
+  
+    public Locacao pesquisaLocacoes(String placa){
+        Locacao retorno = null;
+        for(int i = 0; i<locacoes.size(); i++){
+            if(locacoes.get(i).getAutomovel().getPlaca().equals(placa)){
+               retorno = locacoes.get(i);
+            }
+        }
+        return retorno;
+    }
 
     public boolean insere(Locacao novaLocacao) {
         boolean retorno = false;
@@ -17,6 +27,18 @@ public class ListaLocacoes {
         }
         return retorno;
 
+    }
+
+    public boolean remove(Locacao umaLocacao) {
+        for (int i = 0; i < locacoes.size(); i++) {
+            Locacao outraLocacao = locacoes.get(i);
+            if (umaLocacao==outraLocacao){
+                locacoes.remove(umaLocacao);
+                total = total - 1;
+                return true;
+            }
+        }
+        return false;
     }
 
     public void mostraTotal(){

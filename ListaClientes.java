@@ -49,7 +49,7 @@ public class ListaClientes {
             String str = " ";
             str = "Lista de clientes:" + "\n";
             for (int i = 0; i < clientes.size(); i++) {
-                str = str + clientes.get(i).toString() + "\n" + "//////////////////////";
+                str = str + clientes.get(i).toString() + "\n";
             }
             System.out.println(str);
         }
